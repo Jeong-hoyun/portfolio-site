@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 export default function ProjectItem({data}){
 
     const title = data.properties.projectNames.title[0].plain_text
@@ -17,18 +17,17 @@ export default function ProjectItem({data}){
         var startDate = new Date(startDateStringArray[0], startDateStringArray[1], startDateStringArray[2]);
         var endDate = new Date(endDateStringArray[0], endDateStringArray[1], endDateStringArray[2]);
 
-        console.log(`startDate: ${startDate}`)
-        console.log(`endDate: ${endDate}`)
+        //console.log(`startDate: ${startDate}`)
+        //console.log(`endDate: ${endDate}`)
 
         const diffInMs = Math.abs(endDate - startDate);
-        const result = diffInMs / (1000 * 60 * 60 * 24);
-
-        console.log(`기간 : ${result}`)
+        const result = diffInMs / (1000 * 60 * 60 * 24);   
         return result;
     };
 
     return (
         <div className="project-card">
+        <div>
             <Image
                 className="rounded-t-xl"
                 src={imgSrc}
@@ -39,11 +38,13 @@ export default function ProjectItem({data}){
                 objectFit="cover"
                 quality={100}
             />
-
+           </div>
             <div className="p-5 flex flex-col">
                 <h1 className="text-2xl font-bold">{title}</h1>
                 <h3 className="mt-4 text-xl">{description}</h3>
-                <a href={github}>깃허브 바로가기</a>        
+             <Link href={github} >
+                <a rel="noopner" className='rounded-t-xl'>깃허브 바로가기</a>       
+             </Link> 
                 <p className="my-1">
                     작업기간 : {start} ~ {end} ({calculatedPeriod(start, end)}일)
                 </p>

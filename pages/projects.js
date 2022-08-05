@@ -5,7 +5,7 @@ import ProjectItem from "../components/projects/project-item";
 
 export default function Projects({projects}) {
 
-    console.log(projects);
+   
 
     return (
         <Layout >
@@ -31,7 +31,7 @@ export default function Projects({projects}) {
 }
 
 // 빌드 타임에 호출
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
     const options = {
         method: 'POST',
